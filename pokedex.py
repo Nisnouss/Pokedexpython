@@ -2,7 +2,6 @@ import tkinter as tk
 from PIL import ImageTk, Image
 
 # Mise en place d'une classe pour répertorier les variables ainsi que leurs attributs
-
 class Pokemon:
     def __init__(self, nom, type, capacité, force):
         self.name = nom
@@ -16,37 +15,61 @@ class Pokemon:
         print(f"Capacité : {self.ability}")
         print(f"Force : {self.strenght}")
 
+# Ouverture de la fenêtre principale
 fenetre = tk.Tk()
 fenetre.title("Projet d'évaluation - Pokedex")
 fenetre.geometry("720x480")
 
-# Informations liées aux attributs:
+# Afficher les informations des pokemons sur une autre fenêtre ainsi que leur photo
+def Afficher_infos(event):
+    fenetre_infos = tk.Toplevel()
+    fenetre_infos.geometry("820x580")
+    fenetre_infos.title("Infos sur les pokemon")
+    label_infos = tk.Label(fenetre_infos)
+    try:
+        selection = menu.get(menu.curselection())
+        print(selection)
+        if selection == "Rondoudou":
+            Rondoudouimg_label = tk.Label(fenetre_infos, image=Rondoudouimg)
+            Rondoudouimg_label.pack()
+            label_infos.config(text=f"{Pokemon1.name} est de type {Pokemon1.type}, a pour capacité le pouvoir de {Pokemon1.ability}, et a {Pokemon1.strenght} XP de force")
+        elif selection == "Salamèche":
+            Salamecheimg_label = tk.Label(fenetre_infos, image=Salamecheimg)
+            Salamecheimg_label.pack()
+            label_infos.config(text=f"{Pokemon2.name} est de type {Pokemon2.type}, a pour capacité le pouvoir de {Pokemon2.ability}, et a {Pokemon2.strenght} XP de force")
+        elif selection == "Pikachu":
+            Pikachuimg_label = tk.Label(fenetre_infos, image=Pikachuimg)
+            Pikachuimg_label.pack()
+            label_infos.config(text=f"{Pokemon3.name} est de type {Pokemon3.type}, a pour capacité le pouvoir de l'{Pokemon3.ability}, et a {Pokemon3.strenght} XP de force")
+    except:
+        Informations_pokemon.config(text="Veuillez selectionner un pokemon")
+    label_infos.pack()
 
+# Informations liées aux attributs:
 Pokemon1 = Pokemon("Rondoudou", "normal", "berceuse", 30)
 Pokemon2 = Pokemon("Salamèche", "normal", "feu", 60)
 Pokemon3 = Pokemon("Pikachu", "Electrik", "éclair", 100)
+
+# Images de pokemon
 Rondoudouimg = ImageTk.PhotoImage(Image.open("rondoudou.png"))
 Salamecheimg = ImageTk.PhotoImage(Image.open("salameche.png"))
 Pikachuimg = ImageTk.PhotoImage(Image.open("pikatchu.png"))
 
+# Afficher les selections en cliquant sur les éléments de liste
 def Afficher_selection(event):
     try:
         selection = menu.get(menu.curselection())
         print(selection)
         if selection == "Rondoudou":
-            Affich1 = Pokemon1.Afficher_infos()
-            Informations_pokemon.config(text=f"Voici les informations sur le pokemon selectionné:{Affich1}")
+            Pokemon1.Afficher_infos()
         elif selection == "Salamèche":
-            Affich2 = Pokemon2.Afficher_infos()
-            Informations_pokemon.config(text=f"Voici les informations sur le pokemon selectionné:{Affich2}")
+            Pokemon2.Afficher_infos()
         elif selection == "Pikachu":
-            Affich3 = Pokemon3.Afficher_infos()
-            Informations_pokemon.config(text=f"Voici les informations sur le pokemon selectionné:{Affich3}")
+            Pokemon3.Afficher_infos
     except:
         Informations_pokemon.config(text="Veuillez selectionner un pokemon")
 
 # Création du menu déroulant qui va répertorier les informations des pokemon
-
 menu = tk.Listbox(fenetre, selectmode=tk.SINGLE)
 menu.pack()
 menu.bind("<Button-1>", Afficher_selection)
@@ -55,13 +78,20 @@ options = ["Rondoudou", "Salamèche", "Pikachu"]
 for option in options:
     menu.insert(tk.END, option)
 
-#print_button = tk.Button(fenetre, text="Afficher les informations")
-#print_button.pack()
-#print_button.bind("<Button-1>", Afficher_selection)
+# Bouton permettant d'ouvrir une nouvelle fenêtre affichant les informations sur les pokemons
+print_button = tk.Button(fenetre, text="Afficher les informations", command=Afficher_infos)
+print_button.pack()
+print_button.bind("<Button-1>", Afficher_infos)
 
 Informations_pokemon = tk.Label(fenetre, text= "Voici les informations sur le pokemon selectionné : ")
 Informations_pokemon.pack()
 
+# Ajout d'un pokemon au menu
 
+ajout_pokemon = tk.Entry(fenetre)
+ajout_pokemon.pack()
+
+btn_ajout = tk.Button(fenetre, text="Ajoutez un pokemon")
+btn_ajout.pack()
 
 fenetre.mainloop()
