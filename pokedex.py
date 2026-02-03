@@ -97,6 +97,7 @@ def save_infos(event):
         label_save.config(text=f"Le nom du Pokemon est : {add_pokemon_name.get()}. Il est de type : {add_pokemon_type.get()}, ses capacités sont : {add_pokemon_ability.get()}, et sa force est de {add_pokemon_strenght.get()}")
     label_save.pack()
 
+# Formulaire d'ajout de pokemon
 label_name = tk.Label(window, text="Nom du Pokemon")
 label_name.pack()
 
