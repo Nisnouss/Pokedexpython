@@ -87,24 +87,16 @@ Informations_pokemon = tk.Label(fenetre, text= "Voici les informations sur le po
 Informations_pokemon.pack()
 
 # Ajout d'un pokemon au menu
+
 def save_infos(event):
     fenetre_infos = tk.Toplevel()
     fenetre_infos.geometry("820x580")
     fenetre_infos.title("Infos sur les pokemon")
     label_save = tk.Label(fenetre_infos)
-    if ajout_pokemon_name.get():
-        with open("name.txt", "a") as f:
-            menu.insert(tk.END, ajout_pokemon_name.get()+ "\n")
-    elif ajout_pokemon_type.get():
-        with open("name.txt", "a") as f:
-            info1 = f.write(ajout_pokemon_type.get()+ "\n")
-            label_save.config(text=f"Il est de type : {info1}")
-    elif ajout_pokemon_ability.get():
-        with open("name.txt", "a") as f:
-            f.write(ajout_pokemon_ability.get()+ "\n")
-    elif ajout_pokemon_strenght.get():
-        with open("name.txt", "a") as f:
-            f.write(ajout_pokemon_strenght.get()+ "\n")
+    with open("NewPokemon.txt", "a") as file:
+        menu.insert(tk.END, ajout_pokemon_name.get()+ "\n")
+        label_save.config(text=f"Le nom du Pokemon est : {ajout_pokemon_name.get()}. Il est de type : {ajout_pokemon_type.get()}, ses capacités sont : {ajout_pokemon_ability.get()}, et sa force est de {ajout_pokemon_strenght.get()}")
+    file.close()
     label_save.pack()
 
 label_name = tk.Label(fenetre, text="Nom du Pokemon")
