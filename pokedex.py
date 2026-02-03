@@ -2,7 +2,7 @@ import tkinter as tk
 from PIL import ImageTk, Image
 
 # Mise en place d'une classe pour répertorier les variables ainsi que leurs attributs
-class Pokemon:
+class Pokedex:
     def __init__(self, nom, type, capacité, force):
         self.name = nom
         self.type = type
@@ -32,11 +32,11 @@ def Afficher_infos(event):
         if selection == "Rondoudou":
             Rondoudouimg_label = tk.Label(fenetre_infos, image=Rondoudouimg)
             Rondoudouimg_label.pack()
-            label_infos.config(text=f"{Pokemon1.name} est de type {Pokemon1.type}, a pour capacité le pouvoir de {Pokemon1.ability}, et a {Pokemon1.strenght} XP de force")
+            label_infos.config(text=f"{Pokemon1.name} est de type {Pokemon1.type}, a pour capacité le pouvoir de la {Pokemon1.ability}, et a {Pokemon1.strenght} XP de force")
         elif selection == "Salamèche":
             Salamecheimg_label = tk.Label(fenetre_infos, image=Salamecheimg)
             Salamecheimg_label.pack()
-            label_infos.config(text=f"{Pokemon2.name} est de type {Pokemon2.type}, a pour capacité le pouvoir de {Pokemon2.ability}, et a {Pokemon2.strenght} XP de force")
+            label_infos.config(text=f"{Pokemon2.name} est de type {Pokemon2.type}, a pour capacité le pouvoir du {Pokemon2.ability}, et a {Pokemon2.strenght} XP de force")
         elif selection == "Pikachu":
             Pikachuimg_label = tk.Label(fenetre_infos, image=Pikachuimg)
             Pikachuimg_label.pack()
@@ -46,9 +46,9 @@ def Afficher_infos(event):
     label_infos.pack()
 
 # Informations liées aux attributs:
-Pokemon1 = Pokemon("Rondoudou", "normal", "berceuse", 30)
-Pokemon2 = Pokemon("Salamèche", "normal", "feu", 60)
-Pokemon3 = Pokemon("Pikachu", "Electrik", "éclair", 100)
+Pokemon1 = Pokedex("Rondoudou", "normal", "berceuse", 30)
+Pokemon2 = Pokedex("Salamèche", "normal", "feu", 60)
+Pokemon3 = Pokedex("Pikachu", "Electrik", "éclair", 100)
 
 # Images de pokemon
 Rondoudouimg = ImageTk.PhotoImage(Image.open("rondoudou.png"))
@@ -87,7 +87,6 @@ Informations_pokemon = tk.Label(fenetre, text= "Voici les informations sur le po
 Informations_pokemon.pack()
 
 # Ajout d'un pokemon au menu
-
 def save_infos(event):
     fenetre_infos = tk.Toplevel()
     fenetre_infos.geometry("820x580")
@@ -111,7 +110,7 @@ label_type.pack()
 ajout_pokemon_type = tk.Entry(fenetre)
 ajout_pokemon_type.pack()
 
-label_ability = tk.Label(fenetre, text="Capacitées du Pokemon")
+label_ability = tk.Label(fenetre, text="Capacités du Pokemon")
 label_ability.pack()
 
 ajout_pokemon_ability = tk.Entry(fenetre)
