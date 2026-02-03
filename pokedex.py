@@ -86,20 +86,6 @@ print_button.bind("<Button-1>", Display_infos)
 Informations_pokemon = tk.Label(window, text= "Voici les informations sur le pokemon selectionné : ")
 Informations_pokemon.pack()
 
-# Modifier ou supprimer un élément de la liste:
-def Modify_info():
-    pass
-
-def Delete_info():
-    pass
-
-Modify_button = tk.Button(window, text="Modifier")
-Modify_button.pack()
-
-Delete_button = tk.Button(window, text="Effacer")
-Delete_button.pack()
-Delete_button.bind("<Button-1>", Delete_info)
-
 # Ajout d'un pokemon au menu
 def save_infos(event):
     window_infos = tk.Toplevel()

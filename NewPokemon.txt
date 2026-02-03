@@ -1,1 +1,1 @@
-['Nom: Carapuce, Type: Normal, Capacité: Eau, Force: 50']
+['Nom: Carapuce, Type: Normal, Capacité: Eau, Force: 50']['Nom: Aquali, Type: Normal, Capacité: Physique, Force: 60']['Nom: Bulbizzare, Type: Normal, Capacité: Plantes, Force: 90']
