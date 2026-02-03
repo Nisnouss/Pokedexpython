@@ -95,7 +95,6 @@ def save_infos(event):
     with open("NewPokemon.txt", "a") as file:
         menu.insert(tk.END, ajout_pokemon_name.get()+ "\n")
         label_save.config(text=f"Le nom du Pokemon est : {ajout_pokemon_name.get()}. Il est de type : {ajout_pokemon_type.get()}, ses capacités sont : {ajout_pokemon_ability.get()}, et sa force est de {ajout_pokemon_strenght.get()}")
-    file.close()
     label_save.pack()
 
 label_name = tk.Label(fenetre, text="Nom du Pokemon")
