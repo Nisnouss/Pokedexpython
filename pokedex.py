@@ -61,11 +61,11 @@ def Afficher_selection(event):
         selection = menu.get(menu.curselection())
         print(selection)
         if selection == "Rondoudou":
-            Pokemon1.Afficher_infos()
+            Pokemon1.Display_infos_pokemon()
         elif selection == "Salamèche":
-            Pokemon2.Afficher_infos()
+            Pokemon2.Display_infos_pokemon()
         elif selection == "Pikachu":
-            Pokemon3.Afficher_infos
+            Pokemon3.Display_infos_pokemon()
     except:
         Informations_pokemon.config(text="Veuillez selectionner un pokemon")
 
