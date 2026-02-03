@@ -86,15 +86,34 @@ print_button.bind("<Button-1>", Display_infos)
 Informations_pokemon = tk.Label(window, text= "Voici les informations sur le pokemon selectionné : ")
 Informations_pokemon.pack()
 
+# Modifier ou supprimer un élément de la liste:
+def Modify_info():
+    pass
+
+def Delete_info():
+    pass
+
+Modify_button = tk.Button(window, text="Modifier")
+Modify_button.pack()
+
+Delete_button = tk.Button(window, text="Effacer")
+Delete_button.pack()
+Delete_button.bind("<Button-1>", Delete_info)
+
 # Ajout d'un pokemon au menu
 def save_infos(event):
-    fenetre_infos = tk.Toplevel()
-    fenetre_infos.geometry("820x580")
-    fenetre_infos.title("Infos sur les pokemon")
-    label_save = tk.Label(fenetre_infos)
-    with open("NewPokemon.txt", "a") as file:
+    window_infos = tk.Toplevel()
+    window_infos.geometry("820x580")
+    window_infos.title("Infos sur les pokemon")
+    label_save = tk.Label(window_infos)
+    with open("NewPokemon.txt", "a", encoding="utf-8") as file:
         menu.insert(tk.END, add_pokemon_name.get()+ "\n")
         label_save.config(text=f"Le nom du Pokemon est : {add_pokemon_name.get()}. Il est de type : {add_pokemon_type.get()}, ses capacités sont : {add_pokemon_ability.get()}, et sa force est de {add_pokemon_strenght.get()}")
+        txt = f"Nom: {add_pokemon_name.get()}, Type: {add_pokemon_type.get()}, Capacité: {add_pokemon_ability.get()}, Force: {add_pokemon_strenght.get()}"
+        x = txt.split(" ,")
+        file.write(f"{x}")
+        print(x)
+        file.close()
     label_save.pack()
 
 # Formulaire d'ajout de pokemon

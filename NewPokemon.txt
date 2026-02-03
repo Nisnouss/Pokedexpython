@@ -1,0 +1,1 @@
+['Nom: Carapuce, Type: Normal, Capacité: Eau, Force: 50']
