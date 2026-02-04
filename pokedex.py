@@ -1,5 +1,6 @@
 import tkinter as tk
 from PIL import ImageTk, Image
+from tkinter import messagebox
 
 # Mise en place d'une classe pour répertorier les variables ainsi que leurs attributs
 class Pokedex:
@@ -71,7 +72,7 @@ def Afficher_selection(event):
 
 # Création du menu déroulant qui va répertorier les informations des pokemon
 menu = tk.Listbox(window, selectmode=tk.SINGLE)
-menu.pack()
+menu.place(x=100, y=100)
 menu.bind("<Button-1>", Afficher_selection)
 
 options = ["Rondoudou", "Salamèche", "Pikachu"]
@@ -79,12 +80,12 @@ for option in options:
     menu.insert(tk.END, option)
 
 # Bouton permettant d'ouvrir une nouvelle fenêtre affichant les informations sur les pokemons
-print_button = tk.Button(window, text="Afficher les informations", command=Display_infos)
-print_button.pack()
+print_button = tk.Button(window, text="Afficher les informations", bg="light blue")
+print_button.place(x=100, y=270)
 print_button.bind("<Button-1>", Display_infos)
 
 Informations_pokemon = tk.Label(window, text= "Voici les informations sur le pokemon selectionné : ")
-Informations_pokemon.pack()
+Informations_pokemon.place(x=100, y=300)
 
 # Ajout d'un pokemon au menu
 def save_infos(event):
@@ -104,31 +105,63 @@ def save_infos(event):
 
 # Formulaire d'ajout de pokemon
 label_name = tk.Label(window, text="Nom du Pokemon")
-label_name.pack()
+label_name.place(x=360, y=100)
 
 add_pokemon_name = tk.Entry(window)
-add_pokemon_name.pack()
+add_pokemon_name.place(x=520, y=100)
 
 label_type = tk.Label(window, text="Type de Pokemon")
-label_type.pack()
+label_type.place(x=360, y=130)
 
 add_pokemon_type = tk.Entry(window)
-add_pokemon_type.pack()
+add_pokemon_type.place(x=520, y=130)
 
 label_ability = tk.Label(window, text="Capacités du Pokemon")
-label_ability.pack()
+label_ability.place(x=360, y=160)
 
 add_pokemon_ability = tk.Entry(window)
-add_pokemon_ability.pack()
+add_pokemon_ability.place(x=520, y=160)
 
 label_strenght = tk.Label(window, text="Force du Pokemon")
-label_strenght.pack()
+label_strenght.place(x=360, y=190)
 
 add_pokemon_strenght = tk.Entry(window)
-add_pokemon_strenght.pack()
+add_pokemon_strenght.place(x=520, y=190)
 
-btn_add = tk.Button(window, text="Ajoutez un pokemon")
-btn_add.pack()
+btn_add = tk.Button(window, text="Ajoutez un pokemon", bg="light green")
+btn_add.place(x=430, y=230)
 btn_add.bind("<Button-1>", save_infos)
+
+# Fonctions permettant de modifier ou supprimer
+def Delete_menu(self):
+    try:
+        To_delete = option
+        option_to_delete = menu.get(tk.END).index(To_delete)
+        menu.delete(option_to_delete)
+    except:
+        messagebox.showerror("Erreur", "Veuillez selectionner un élément du menu à supprimer.")
+        window.quit
+
+def Modify_menu(self):
+    try:
+        selection = menu.get(menu.curselection())
+        print(selection)
+        selection[0] = add_pokemon_name.get()
+        menu.insert(selection)
+    except:
+        messagebox.showerror("Erreur", "Veuillez selectionner un élément du menu à modifier.")
+        window.quit
+
+# Supprimer ou modifier des pokemons
+label_mod_del = tk.Label(window, text="Si vous souhaitez modifier ou supprimer un élément du menu, veuillez cliquer sur le bouton correspondant : ")
+label_mod_del.place(x=100, y=360)
+
+btn_modify = tk.Button(window, text="Modifier", bg="yellow")
+btn_modify.place(x=305, y=400)
+btn_modify.bind("<Button-3>", Modify_menu)
+
+btn_delete = tk.Button(window, text="Supprimer", bg="red")
+btn_delete.place(x=370, y=400)
+btn_delete.bind("<Button-1>", Delete_menu)
 
 window.mainloop()
